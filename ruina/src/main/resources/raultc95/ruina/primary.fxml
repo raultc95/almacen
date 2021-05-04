@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raultc95.ruina.PrimaryController">
+   <children>
+      <Button fx:id="listaCompleta" layoutX="45.0" layoutY="45.0" mnemonicParsing="false" onAction="#listaCompleta" text="Lista Completa" />
+      <Button fx:id="Cpendientes" layoutX="460.0" layoutY="45.0" mnemonicParsing="false" onAction="#listaPendientes" text="Lecturas Pendientes" />
+      <TableView fx:id="tablaComic" editable="true" layoutX="4.0" layoutY="197.0" prefHeight="447.0" prefWidth="685.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="197.0">
+        <columns>
+          <TableColumn fx:id="tituloColumna" prefWidth="248.0" text="Titulo" />
+          <TableColumn fx:id="autorColumna" minWidth="0.0" prefWidth="143.0" text="Autor" />
+            <TableColumn fx:id="editorialColumna" prefWidth="120.0" text="Editorial" />
+            <TableColumn fx:id="numeroColumna" prefWidth="82.0" text="Volumen" />
+            <TableColumn fx:id="leidoColumna" prefWidth="70.0" text="Leido" />
+        </columns>
+      </TableView>
+      <Button fx:id="add" layoutX="45.0" layoutY="92.0" mnemonicParsing="false" onAction="#pulsado" prefHeight="25.0" prefWidth="122.0" text="AÑADIR COMIC" />
+      <MenuBar layoutY="8.0" prefHeight="25.0" prefWidth="647.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="ARCHIVO">
+            <items>
+              <MenuItem fx:id="guardar_xml" mnemonicParsing="false" onAction="#save_xml" text="GUARDAR CONEXION" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="SOBRE">
+            <items>
+              <MenuItem fx:id="donacion" mnemonicParsing="false" onAction="#donacion" text="Donaciones" />
+                  <MenuItem mnemonicParsing="false" onAction="#informacion" text="Informacion" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="autor" layoutX="460.0" layoutY="92.0" mnemonicParsing="false" onAction="#addAutor" prefHeight="25.0" prefWidth="176.0" text="AÑADIR SELLO/COLECCION" />
+      <TextField layoutX="45.0" layoutY="165.0" prefHeight="25.0" prefWidth="308.0" />
+      <Button layoutX="379.0" layoutY="165.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="BUSCAR" />
+   </children>
+</AnchorPane>

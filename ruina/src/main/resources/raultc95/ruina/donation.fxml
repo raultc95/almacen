@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="596.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raultc95.ruina.donation">
+   <children>
+      <Text fx:id="mensaje" fill="WHITE" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Esta aplicación ha costado sangre, sudor y lagrimas para que pueda funcionar sin problemas. Lo que no cuesta nada es una donacion por el esfuerzo. Apoya esta aplicacion. No hagas enfadar a Frank Miller" wrappingWidth="516.974609375">
+         <font>
+            <Font name="Ink Free" size="23.0" />
+         </font></Text>
+      <ImageView fx:id="paypal" fitHeight="128.0" fitWidth="284.0" layoutX="48.0" layoutY="170.0" onMouseClicked="#enlace" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@klipartz.com.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="152.0" fitWidth="167.0" layoutX="441.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Frank.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
