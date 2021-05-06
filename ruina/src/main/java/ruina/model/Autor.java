@@ -1,12 +1,13 @@
-package model.autor;
+package ruina.model;
 
 import java.io.Serializable;
 
 public class Autor implements Serializable {
-	private String  nombre;
+	private static final long serialVersionUID = 1L;
+	private String nombre;
 
 	public Autor(String nombre) {
-		
+
 		this.nombre = nombre;
 	}
 
@@ -20,7 +21,7 @@ public class Autor implements Serializable {
 
 	@Override
 	public String toString() {
-		return  nombre;
+		return nombre;
 	}
 
 }

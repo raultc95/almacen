@@ -1,11 +1,8 @@
-package model.comic;
+package ruina.model;
 
 import java.io.Serializable;
 
 public class Coleccion implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected int id;
 	protected String titulo;
@@ -41,7 +38,4 @@ public class Coleccion implements Serializable {
 		return "Coleccion [id=" + id + ", titulo=" + titulo + "]";
 	}
 
-	
-	
-	
 }

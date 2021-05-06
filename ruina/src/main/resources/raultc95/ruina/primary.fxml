@@ -38,8 +38,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="autor" layoutX="460.0" layoutY="92.0" mnemonicParsing="false" onAction="#addAutor" prefHeight="25.0" prefWidth="176.0" text="AÑADIR SELLO/COLECCION" />
+      <Button fx:id="coleccion" layoutX="460.0" layoutY="92.0" mnemonicParsing="false" onAction="#addColeccion" prefHeight="25.0" prefWidth="176.0" text="AÑADIR SELLO/COLECCION" />
       <TextField layoutX="45.0" layoutY="165.0" prefHeight="25.0" prefWidth="308.0" />
-      <Button layoutX="379.0" layoutY="165.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="BUSCAR" />
+      <Button fx:id="buscar" layoutX="379.0" layoutY="165.0" mnemonicParsing="false" onAction="#buscar" prefHeight="25.0" prefWidth="95.0" text="BUSCAR" />
+      <Button fx:id="editar" layoutX="508.0" layoutY="165.0" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="111.0" text="EDITAR" />
    </children>
 </AnchorPane>

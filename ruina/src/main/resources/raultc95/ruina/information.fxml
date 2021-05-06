@@ -32,7 +32,7 @@
          <Rectangle2D />
       </viewport>
    </ImageView>
-   <TextField disable="true" layoutX="111.0" layoutY="78.0" prefHeight="25.0" prefWidth="151.0" AnchorPane.bottomAnchor="570.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="377.0" AnchorPane.topAnchor="78.0">
+   <TextField fx:id="titulo" layoutX="111.0" layoutY="78.0" prefHeight="25.0" prefWidth="151.0" AnchorPane.bottomAnchor="570.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="377.0" AnchorPane.topAnchor="78.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -44,7 +44,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="113.0" layoutY="129.0" AnchorPane.rightAnchor="377.0">
+   <TextField fx:id="autor" layoutX="113.0" layoutY="129.0" AnchorPane.rightAnchor="377.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -56,7 +56,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="113.0" layoutY="167.0" AnchorPane.rightAnchor="377.0">
+   <TextField fx:id="dibujante" layoutX="113.0" layoutY="167.0" AnchorPane.rightAnchor="377.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -68,7 +68,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="207.0">
+   <TextField fx:id="colorista" layoutX="111.0" layoutY="207.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -80,7 +80,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="255.0">
+   <TextField fx:id="volumen" layoutX="111.0" layoutY="255.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -92,7 +92,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="294.0">
+   <TextField fx:id="entintador" layoutX="111.0" layoutY="294.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -104,7 +104,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="335.0">
+   <TextField fx:id="editorial" layoutX="111.0" layoutY="335.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -116,7 +116,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="377.0">
+   <TextField fx:id="edicion" layoutX="111.0" layoutY="377.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -128,7 +128,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextField disable="true" layoutX="111.0" layoutY="417.0">
+   <TextField fx:id="color" layoutX="111.0" layoutY="417.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -140,7 +140,7 @@
          </Lighting>
       </effect>
    </TextField>
-   <TextArea disable="true" layoutX="102.0" layoutY="480.0" prefHeight="95.0" prefWidth="200.0">
+   <TextArea fx:id="contenido" layoutX="102.0" layoutY="480.0" prefHeight="95.0" prefWidth="322.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -152,9 +152,9 @@
          </Lighting>
       </effect>
    </TextArea>
-   <Button layoutX="431.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="GUARDAR" />
+   <Button fx:id="guardar" layoutX="448.0" layoutY="550.0" mnemonicParsing="false" onAction="#actualizar" prefHeight="25.0" prefWidth="128.0" text="GUARDAR" />
    <Label layoutX="23.0" layoutY="41.0" prefHeight="17.0" prefWidth="33.0" text="ISBN" />
-   <TextField disable="true" layoutX="111.0" layoutY="37.0">
+   <TextField fx:id="isbn" layoutX="111.0" layoutY="37.0">
       <effect>
          <Lighting>
             <bumpInput>
@@ -166,4 +166,5 @@
          </Lighting>
       </effect>
    </TextField>
+   <Button fx:id="eliminar" layoutX="448.0" layoutY="592.0" mnemonicParsing="false" onAction="#borrar" prefHeight="25.0" prefWidth="128.0" text="ELIMINAR" />
 </AnchorPane>

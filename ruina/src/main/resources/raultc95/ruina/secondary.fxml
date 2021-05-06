@@ -31,7 +31,7 @@
       <TextField fx:id="color" layoutX="93.0" layoutY="516.0" onAction="#addLibro" prefHeight="25.0" prefWidth="189.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="55.0" />
       <TextArea fx:id="contenido" layoutX="101.0" layoutY="580.0" prefHeight="72.0" prefWidth="260.0" />
       <Label layoutX="19.0" layoutY="227.0" text="VOLUMEN" />
-      <Spinner fx:id="volumen" editable="true" layoutX="100.0" layoutY="223.0" />
+      <TextField fx:id="volumen" layoutX="100.0" layoutY="223.0" onAction="#addLibro" prefHeight="25.0" prefWidth="189.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="48.0" />
       <Label layoutX="28.0" layoutY="40.0" prefHeight="17.0" prefWidth="39.0" text="ISBN*" />
       <TextField fx:id="isbn" layoutX="100.0" layoutY="36.0" prefHeight="25.0" prefWidth="238.0" />
       <Label layoutX="16.0" layoutY="672.0" text="AÑADIR PORTADA" />

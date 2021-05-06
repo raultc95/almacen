@@ -10,8 +10,8 @@ module ruina{
 	requires java.sql;
 	requires javafx.base;
 	
-
+//    opens ruina.controller to javafx.fxml;
     opens raultc95.ruina to javafx.fxml;
-    opens model to java.xml.bind;
+    opens ruina.model to java.xml.bind;
     exports raultc95.ruina;
 }

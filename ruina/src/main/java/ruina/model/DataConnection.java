@@ -1,15 +1,10 @@
-package model;
-
-import java.sql.Connection;
-
-import java.sql.DriverManager;
-import java.sql.SQLException;
+package ruina.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="DataConnection")
+@XmlRootElement(name = "DataConnection")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataConnection {
 	private String host;
