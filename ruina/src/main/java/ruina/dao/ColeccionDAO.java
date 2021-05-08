@@ -5,16 +5,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import ruina.model.ColecVol;
 import ruina.model.Coleccion;
 import ruina.model.DataConnection;
+import ruina.model.Volumen;
 import ruina.service.ConectionUtil;
 
 public class ColeccionDAO extends Coleccion {
-	private DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
+	private static DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
 	private static final long serialVersionUID = 1L;
-	private final static String GETCOL = "SELECT coleccion.titulo FROM coleccion";
-	private final static String INSERTCOL = "INSERT INTO coleccion (titulo) VALUES (?) ON DUPLICATE KEY UPDATE titulo=?";
+	private final static String GETCOL = "SELECT coleccion.serie, volumen.titulo ,volumen.numero, volumen.isbn "
+			+ " FROM coleccion, volumen " + " WHERE coleccion.id=volumen.id_coleccion ORDER BY coleccion.serie";
+	private final static String INSERTCOL = "INSERT INTO coleccion (serie) VALUES (?) ON DUPLICATE KEY UPDATE serie=?";
+
+	private static String titulov;
+	private static String isbn;
+	private static String numero;
 
 	public ColeccionDAO() {
 		super();
@@ -32,11 +41,11 @@ public class ColeccionDAO extends Coleccion {
 		if (con != null) {
 			try {
 				Statement st = con.createStatement();
-				String q = GETCOL + "" + titulo + "";
+				String q = GETCOL + "" + serie + "";
 				ResultSet rs = st.executeQuery(q);
 
 				while (rs.next()) {
-					this.titulo = rs.getNString("titulo");
+					this.serie = rs.getNString("serie");
 				}
 
 			} catch (SQLException e) {
@@ -61,8 +70,8 @@ public class ColeccionDAO extends Coleccion {
 		if (con != null) {
 			try {
 				PreparedStatement q = con.prepareStatement(INSERTCOL);
-				q.setString(1, this.titulo);
-				q.setString(2, this.titulo);
+				q.setString(1, this.serie);
+				q.setString(2, this.serie);
 
 				rs = q.executeUpdate();
 			} catch (SQLException e) {
@@ -71,6 +80,59 @@ public class ColeccionDAO extends Coleccion {
 			}
 		}
 		return rs;
+	}
+
+	public static List<ColecVol> obtenerListaColecciones() {
+		List<ColecVol> listado = new ArrayList<>();
+		try {
+			Connection miConexion = ConectionUtil.connect(dc);
+			Statement st = miConexion.createStatement();
+
+			ResultSet rs = st.executeQuery(GETCOL);
+
+			while (rs.next()) {
+				// int id = rs.getInt("id");
+				String tituloc = rs.getString("serie");
+				titulov = rs.getString("titulo");
+				numero = rs.getString("numero");
+				isbn = rs.getString("isbn");
+
+				ColecVol c = new ColecVol(tituloc, titulov, numero, isbn);
+
+				listado.add(c);
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			listado = new ArrayList<>();
+		}
+		return listado;
+	}
+
+	public String getTitulov() {
+		return titulov;
+	}
+
+	public void setTitulov(String titulov) {
+		this.titulov = titulov;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 }

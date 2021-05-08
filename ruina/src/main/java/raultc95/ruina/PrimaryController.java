@@ -44,6 +44,8 @@ public class PrimaryController {
 	@FXML
 	private Button coleccion;
 	@FXML
+	private Button listaColecciones;
+	@FXML
 	private CheckBox check;
 	@FXML
 	private  TableView<Volumen> tablaComic;
@@ -292,9 +294,26 @@ public class PrimaryController {
 	}
 
 	@FXML
-	private void buscar() {
-		
+	private void listColecciones() {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tablacolecciones.fxml"));
+		Parent root = null;
+
+		try {
+			root = fxmlLoader.load();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setOpacity(1);
+		stage.setTitle("LISTADO DE COLECCIONES");
+		stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.showAndWait();
 	}
+		
 	
+
 
 }

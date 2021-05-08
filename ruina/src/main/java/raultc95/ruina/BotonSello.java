@@ -25,7 +25,7 @@ public class BotonSello {
 	private Button add;
 	@FXML
 	private void addColeccion() {
-		coleccion.setTitulo(titulo.getText());
+		coleccion.setSerie(titulo.getText());
 		
 		try {
 			Connection miConexion = ConectionUtil.connect(dc);

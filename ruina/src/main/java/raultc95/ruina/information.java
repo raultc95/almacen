@@ -1,13 +1,23 @@
 package raultc95.ruina;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import ruina.dao.VolumenDAO;
@@ -53,7 +63,7 @@ public class information {
 	
 
 	@FXML
-	protected void initialize() {
+	protected void initialize() throws FileNotFoundException {
 
 		lista = VolumenDAO.obtenerListaComicsLeidos("id=" + id);
 		comic = lista.get(0);
@@ -68,10 +78,19 @@ public class information {
 		edicion.setText(comic.getEdicion());
 		color.setText(comic.getColor());
 		contenido.setText(comic.getContenido());
+		String cadenaimagen="Portadas/GAB_azzarello_risso.jpg";
+		//Image image1 = new Image(getClass().getResource("Portadas\\prueba.jpg").toString(), true);
+		byte[] imageBytes=Base64.getDecoder().decode(cadenaimagen.getBytes());
+	    ByteArrayInputStream is=new ByteArrayInputStream(imageBytes);
+	    portada.setImage(new Image(is));
+		
+		
+		//portada.setImage(image1);
+		
 	}
 	@FXML
 	protected void actualizar() {
-		System.out.println(comic);
+		
 		comic.setId(id);
 		comic.setIsbn(isbn.getText());
 		comic.setTitulo(titulo.getText());

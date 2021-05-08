@@ -1,6 +1,7 @@
 package ruina.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class Volumen implements Serializable {
 	protected final static String GETBYTITULO = "SELECT titulo,autor,editorial FROM volumen";
@@ -19,8 +20,14 @@ public class Volumen implements Serializable {
 	protected String color;
 	protected String contenido;
 	protected boolean leido;
+	protected String portada;
 
 	public Volumen() { }
+	public Volumen(String titulo, String numero, String isbn) {
+		this.titulo = titulo;
+		this.numero = numero;
+		this.isbn = isbn;
+	}
 
 	public Volumen(String titulo, String autor, String editorial, String numero, Boolean leido) {
 		this.titulo = titulo;
@@ -48,6 +55,7 @@ public class Volumen implements Serializable {
 		this.contenido = contenido;
 		this.leido = leido;
 	}
+	
 
 	public String getTitulo() {
 		return titulo;
@@ -164,7 +172,15 @@ public class Volumen implements Serializable {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
 
+	
+	public String getPortada() {
+		return portada;
+	}
+	public void setPortada(String portada) {
+		this.portada = portada;
+	}
 	@Override
 	public String toString() {
 		return ""

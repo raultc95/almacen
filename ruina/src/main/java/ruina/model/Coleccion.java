@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Coleccion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected int id;
-	protected String titulo;
+	protected  String serie;
 		
-	public Coleccion(int id, String titulo) {
+	public Coleccion(int id, String serie) {
 		super();
 		this.id=id;
-		this.titulo=titulo;
+		this.serie=serie;
 	}
 
 	public Coleccion() {
@@ -25,17 +25,17 @@ public class Coleccion implements Serializable {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getSerie() {
+		return serie;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
 
 	@Override
 	public String toString() {
-		return "Coleccion [id=" + id + ", titulo=" + titulo + "]";
+		return "Coleccion [id=" + id + ", titulo=" + serie + "]";
 	}
 
 }

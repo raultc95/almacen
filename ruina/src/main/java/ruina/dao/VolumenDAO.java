@@ -17,8 +17,8 @@ public class VolumenDAO extends Volumen {
 	private static final long serialVersionUID = 1L;
 //	private final static String GETBYTITULO = "SELECT titulo,autor,editorial FROM autor WHERE titulo=";
 	private final static String INSERTUPDATE = "INSERT INTO volumen (id, id_coleccion, titulo, autor, numero, isbn,"
-			+ " editorial, dibujante, entintador, colorista, edicion, color, contenido, leido) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" + "ON DUPLICATE KEY UPDATE titulo=?,autor=?";
+			+ " editorial, dibujante, entintador, colorista, edicion, color, contenido, leido, portada) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)" + "ON DUPLICATE KEY UPDATE titulo=?,autor=?";
 	private final static String LEIDO = "UPDATE volumen SET leido = ? WHERE volumen.id=?";
 	private final static String ELIMINAR = "DELETE FROM volumen WHERE id = ?";
 	private final static String UPDATE = "UPDATE volumen SET id_coleccion = ?, titulo = ?, autor = ?, numero = ?, isbn = ?, editorial = ?, dibujante = ?,"
@@ -64,8 +64,9 @@ public class VolumenDAO extends Volumen {
 				q.setString(12, this.color);
 				q.setString(13, this.contenido);
 				q.setBoolean(14, this.leido);
-				q.setString(15, this.titulo);
-				q.setString(16, this.autor);
+				q.setString(15, this.portada);
+				q.setString(16, this.titulo);
+				q.setString(17, this.autor);
 				rs = q.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
