@@ -14,6 +14,9 @@ import javafx.scene.control.Alert.AlertType;
 import ruina.model.*;
 import ruina.dao.*;
 import ruina.service.*;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class BotonSello {
 	private DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
@@ -44,7 +47,6 @@ public class BotonSello {
 		alert.setContentText("COLECCION AÑADIDA CORRECTAMENTE");
 
 		alert.showAndWait();
-		System.out.println("SELLO AÑADIDO");
 	}
 	
 }

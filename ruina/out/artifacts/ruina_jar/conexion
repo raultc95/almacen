@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataConnection>
+    <host>localhost</host>
+    <db>almacen</db>
+    <user>root</user>
+    <password></password>
+</DataConnection>

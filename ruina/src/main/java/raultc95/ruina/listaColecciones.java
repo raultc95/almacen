@@ -13,6 +13,9 @@ import ruina.dao.VolumenDAO;
 import ruina.model.ColecVol;
 import ruina.model.Coleccion;
 import ruina.model.Volumen;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class listaColecciones {
 	@FXML

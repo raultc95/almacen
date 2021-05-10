@@ -1,11 +1,14 @@
 package ruina.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "DataConnection")
 @XmlAccessorType(XmlAccessType.FIELD)
+/*
+ * @Author	Raul Tenllado		¿Sabes cómo llama mi gente a este último año? El largo Halloween
+ */
 public class DataConnection {
 	private String host;
 	private String db;

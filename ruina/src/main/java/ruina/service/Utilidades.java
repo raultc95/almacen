@@ -1,12 +1,15 @@
 package ruina.service;
 
 import java.io.File;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 import ruina.model.DataConnection;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class Utilidades {
 
@@ -27,16 +30,17 @@ public class Utilidades {
 		DataConnection result = null;
 		JAXBContext jaxbContext;
 		File file = new File(path);
-		if (file.exists() && file.isFile()) {
+		if (file.exists() && file.isFile() && !path.isEmpty()) {
 			try {
 				jaxbContext = JAXBContext.newInstance(DataConnection.class);
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-				// We had written this file in marshalling example
 				result = (DataConnection) jaxbUnmarshaller.unmarshal(file);
 			} catch (JAXBException e) {
 				e.printStackTrace();
 			}
 		} else {
+			DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
+			saveFile(dc,path);
 			result = new DataConnection();
 		}
 		return result;

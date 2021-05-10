@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class donation {
 	@FXML

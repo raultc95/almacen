@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class visita {
 	@FXML

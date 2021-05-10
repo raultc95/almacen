@@ -4,15 +4,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raultc95.ruina.listaColecciones">
-   <children>
-      <TableView fx:id="tablaColecciones" layoutX="5.0" layoutY="2.0" prefHeight="400.0" prefWidth="611.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columns>
-          <TableColumn fx:id="coleccionColumna" prefWidth="202.0" text="COLECCION" />
-          <TableColumn fx:id="tituloColumna" prefWidth="126.0" text="TITULO" />
-            <TableColumn fx:id="volumenColumna" prefWidth="122.0" text="VOLUMEN" />
-            <TableColumn fx:id="isbnColumna" prefWidth="196.0" text="ISBN" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0"
+	prefWidth="647.0" xmlns="http://javafx.com/javafx/16"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="raultc95.ruina.listaColecciones">
+	<children>
+		<TableView fx:id="tablaColecciones" layoutX="5.0"
+			layoutY="2.0" prefHeight="400.0" prefWidth="611.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<columns>
+				<TableColumn fx:id="coleccionColumna" prefWidth="202.0"
+					text="COLECCION" />
+				<TableColumn fx:id="tituloColumna" prefWidth="126.0"
+					text="TITULO" />
+				<TableColumn fx:id="volumenColumna" prefWidth="122.0"
+					text="VOLUMEN" />
+				<TableColumn fx:id="isbnColumna" prefWidth="196.0"
+					text="ISBN" />
+			</columns>
+		</TableView>
+	</children>
 </AnchorPane>

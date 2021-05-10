@@ -1,27 +1,32 @@
 package raultc95.ruina;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Base64;
+
 import java.util.List;
-
-import javax.swing.ImageIcon;
-
-
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import ruina.dao.VolumenDAO;
 import ruina.model.Volumen;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class information {
 	@FXML
@@ -58,15 +63,17 @@ public class information {
 
 	private List<Volumen> lista = new ArrayList<>();
 	private static int id = 1;
-	private static Boolean tabla=true;
+	private static Boolean tabla = true;
 	VolumenDAO v = new VolumenDAO();
-	
+	private String imagePath = "";
 
 	@FXML
 	protected void initialize() throws FileNotFoundException {
 
 		lista = VolumenDAO.obtenerListaComicsLeidos("id=" + id);
+
 		comic = lista.get(0);
+		imagePath = comic.getPortada();
 		isbn.setText(comic.getIsbn());
 		titulo.setText(comic.getTitulo());
 		autor.setText(comic.getAutor());
@@ -78,19 +85,20 @@ public class information {
 		edicion.setText(comic.getEdicion());
 		color.setText(comic.getColor());
 		contenido.setText(comic.getContenido());
-		String cadenaimagen="Portadas/GAB_azzarello_risso.jpg";
-		//Image image1 = new Image(getClass().getResource("Portadas\\prueba.jpg").toString(), true);
-		byte[] imageBytes=Base64.getDecoder().decode(cadenaimagen.getBytes());
-	    ByteArrayInputStream is=new ByteArrayInputStream(imageBytes);
-	    portada.setImage(new Image(is));
-		
-		
-		//portada.setImage(image1);
-		
+
+		String caratula = comic.getPortada();
+
+		if (caratula != null && !caratula.trim().equals("")) {
+			FileInputStream inputstream = new FileInputStream(caratula);
+			Image image = new Image(inputstream);
+			portada.setImage(image);
+		}
+
 	}
+
 	@FXML
 	protected void actualizar() {
-		
+
 		comic.setId(id);
 		comic.setIsbn(isbn.getText());
 		comic.setTitulo(titulo.getText());
@@ -103,9 +111,37 @@ public class information {
 		comic.setEdicion(edicion.getText());
 		comic.setColor(color.getText());
 		comic.setContenido(contenido.getText());
+		comic.setPortada(imagePath);
+
 		v.actualizar(comic);
 
 	}
+
+	@FXML
+	protected void actualizarPortada() throws FileNotFoundException {
+		FileChooser fc3 = new FileChooser();
+		File selectedFile = fc3.showOpenDialog(null);
+
+		fc3.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+		if (selectedFile != null) {
+
+			imagePath = selectedFile.getAbsolutePath();
+			FileInputStream inputstream = new FileInputStream(imagePath);
+			Image image = new Image(inputstream);
+			portada.setImage(image);
+
+		} else {
+
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Imagen no seleccionada");
+
+			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent((ButtonType response) -> {
+				System.out.println("OK");
+			});
+		}
+
+	}
+
 	@FXML
 	protected void borrar() {
 		v.eliminar(id);
@@ -113,7 +149,6 @@ public class information {
 		stage.close();
 
 	}
-	
 
 	public static int getId() {
 		return id;
@@ -122,14 +157,13 @@ public class information {
 	public static void setId(int id) {
 		information.id = id;
 	}
-	
+
 	public static Boolean getTabla() {
 		return tabla;
 	}
-	
+
 	public static void setTabla(Boolean tabla) {
 		information.tabla = tabla;
 	}
-	
 
 }

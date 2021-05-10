@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,9 +23,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import ruina.dao.ColeccionDAO;
 import ruina.dao.VolumenDAO;
+import ruina.model.Coleccion;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class SecondaryController  {
+	@FXML
+	private ChoiceBox <String>listaColeccion = new ChoiceBox<>();
 	@FXML
 	private TextField titulo;
 	@FXML
@@ -55,16 +63,26 @@ public class SecondaryController  {
 	private AnchorPane anchorpane;
 	@FXML
 	private ListView listview;
-
+	
+	
+	private String imagePath = "";
 //	private DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
 	VolumenDAO comic = new VolumenDAO();
+	ColeccionDAO coleccion = new ColeccionDAO();
 
 	/**
 	 * Llama a VolumenDAO para guardar el comic en la BD
 	 *
 	 */
 	
-	
+	@FXML
+	protected void initialize() {
+		
+		for (Coleccion coleccion: ColeccionDAO.obtenerLista()) {
+			listaColeccion.getItems().add(coleccion.getSerie());
+		}
+		
+	}
 	@FXML
 	private void addLibro() {
 		comic.setIsbn(isbn.getText());
@@ -78,37 +96,34 @@ public class SecondaryController  {
 		comic.setColor(color.getText());
 		comic.setContenido(contenido.getText());
 		comic.setNumero(volumen.getText());
-		comic.setPortada(portada.getText());
+		comic.setPortada(imagePath);
+		
+		comic.setId_coleccion(ColeccionDAO.obtenerLista().get(listaColeccion.getSelectionModel().getSelectedIndex()).getId());
 		
 
 		comic.guardar();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("AÑADIR");
+		alert.setHeaderText("AÑADIDO");
+		alert.setContentText("LIBRO/COMIC AÑADIDO CORRECTAMENTE");
+
+		alert.showAndWait();
+		System.out.println("SELLO AÑADIDO");
 		System.out.println("Se ha añadido correctamente");
 	}
 	@FXML
 	public void actionPerformed(ActionEvent e){
-		/*FileChooser fileChooser = new FileChooser();
-		File selectedFile = fileChooser.showOpenDialog(null);
-		 
-		if (selectedFile != null) {
-		 
-		    portada.setText("File selected: " + selectedFile.getName());
-		}
-		else {
-		    portada.setText("File selection cancelled.");
-		}
-		*/
+		
 		FileChooser fc3 = new FileChooser();
 	       File selectedFile = fc3.showOpenDialog(null);
 
 	        fc3.getExtensionFilters().addAll(
-	        new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+	        new ExtensionFilter("Image Files", "*.png", "*.jpg","*.jpeg", "*.gif"));
 
 
 	    if (selectedFile != null) {
 
-	        String location =   (selectedFile.getAbsoluteFile().toURI().toString());
-	        System.out.println(location);
-	        
+	        imagePath = selectedFile.getAbsolutePath();
 
 	    } else {
 
@@ -121,15 +136,13 @@ public class SecondaryController  {
 	        });
 
 	    }
-		
-        
-		
        
     }
-
-
-   	
-		
 	
+	@FXML
+	public void seleccion() {
+		 
+		listaColeccion.getItems().add("Hola");
+	}
 
 }

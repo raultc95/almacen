@@ -11,18 +11,20 @@ import java.util.List;
 import ruina.model.DataConnection;
 import ruina.model.Volumen;
 import ruina.service.ConectionUtil;
-
+/*
+ * @Author Raul Tenllado
+ */
 public class VolumenDAO extends Volumen {
 	private static DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
 	private static final long serialVersionUID = 1L;
 //	private final static String GETBYTITULO = "SELECT titulo,autor,editorial FROM autor WHERE titulo=";
 	private final static String INSERTUPDATE = "INSERT INTO volumen (id, id_coleccion, titulo, autor, numero, isbn,"
 			+ " editorial, dibujante, entintador, colorista, edicion, color, contenido, leido, portada) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)" + "ON DUPLICATE KEY UPDATE titulo=?,autor=?";
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private final static String LEIDO = "UPDATE volumen SET leido = ? WHERE volumen.id=?";
 	private final static String ELIMINAR = "DELETE FROM volumen WHERE id = ?";
 	private final static String UPDATE = "UPDATE volumen SET id_coleccion = ?, titulo = ?, autor = ?, numero = ?, isbn = ?, editorial = ?, dibujante = ?,"
-			+ " entintador = ?, colorista = ?, edicion = ?, color = ?, contenido = ?, leido = ? "
+			+ " entintador = ?, colorista = ?, edicion = ?, color = ?, contenido = ?, leido = ?, portada =? "
 			+ " WHERE volumen.id=?";
 	static List<Volumen> listaComic = new ArrayList<>();
 
@@ -35,9 +37,7 @@ public class VolumenDAO extends Volumen {
 	}
 
 	public int guardar() {
-		// INSERT o UPDATE
-		// INSERT -> si no existe OK
-		// En caso de ERROR -> hago un update
+
 		int rs = 0;
 		Connection con = null;
 
@@ -51,7 +51,7 @@ public class VolumenDAO extends Volumen {
 			try {
 				PreparedStatement q = con.prepareStatement(INSERTUPDATE);
 				q.setInt(1, this.id);
-				q.setString(2, this.id_coleccion);
+				q.setInt(2, this.id_coleccion);
 				q.setString(3, this.titulo);
 				q.setString(4, this.autor);
 				q.setString(5, this.numero);
@@ -65,9 +65,9 @@ public class VolumenDAO extends Volumen {
 				q.setString(13, this.contenido);
 				q.setBoolean(14, this.leido);
 				q.setString(15, this.portada);
-				q.setString(16, this.titulo);
-				q.setString(17, this.autor);
+				
 				rs = q.executeUpdate();
+				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -76,10 +76,7 @@ public class VolumenDAO extends Volumen {
 	}
 	
 	public void  actualizar(Volumen comic) {
-		// INSERT o UPDATE
-		// INSERT -> si no existe OK
-		// En caso de ERROR -> hago un update
-		//int rs = 0;
+
 		Connection con = null;
 
 		try {
@@ -92,7 +89,7 @@ public class VolumenDAO extends Volumen {
 			try {
 				PreparedStatement q = con.prepareStatement(UPDATE);
 				
-				q.setString(1, comic.getId_coleccion());
+				q.setInt(1, comic.getId_coleccion());
 				q.setString(2, comic.getTitulo());
 				q.setString(3, comic.getAutor());
 				q.setString(4, comic.getNumero());
@@ -105,22 +102,19 @@ public class VolumenDAO extends Volumen {
 				q.setString(11,comic.getColor());
 				q.setString(12, comic.getContenido());
 				q.setBoolean(13, comic.Leido());
-				q.setInt(14, comic.getId());
+				q.setString(14, comic.getPortada());
+				q.setInt(15, comic.getId());
 				
 				q.executeUpdate();
+				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		//return rs;
+
 	}
 
-	/**
-	 * NO ESTÁ ELIMINANDO NADA
-	 * 
-	 * @param id
-	 * @return
-	 */
+	
 	public int eliminar(int id) {
 		int rs = 0;
 		Connection con = null;
@@ -149,13 +143,7 @@ public class VolumenDAO extends Volumen {
 		return listaComic;
 	}
 
-	/**
-	 * Actualiza el comic de la BD con el id indicado, para cambiar su estado a
-	 * leido o no.
-	 *
-	 * @param leido
-	 * @param idvol
-	 */
+
 	public static void leido(boolean leido, int idvol) {
 		Connection con = null;
 
@@ -171,17 +159,15 @@ public class VolumenDAO extends Volumen {
 				q.setBoolean(1, leido);
 				q.setInt(2, idvol);
 				q.executeUpdate();
+				
+				q.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	/**
-	 * Obtiene una lista ordenada de todos los comics de la base de datos
-	 *
-	 * @return
-	 */
+
 	public static List<Volumen> obtenerListaComics() {
 		List<Volumen> completo = new ArrayList<>();
 		try {
@@ -192,7 +178,7 @@ public class VolumenDAO extends Volumen {
 
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				String id_coleccion = rs.getString("id_coleccion");
+				int id_coleccion = rs.getInt("id_coleccion");
 				String isbn = rs.getString("isbn");
 				String titulo = rs.getString("titulo");
 				String autor = rs.getString("autor");
@@ -204,10 +190,11 @@ public class VolumenDAO extends Volumen {
 				String edicion = rs.getString("edicion");
 				String color = rs.getString("color");
 				String contenido = rs.getString("contenido");
+				String portada = rs.getString("portada");
 				boolean leido = rs.getBoolean("leido");
 
 				Volumen c = new Volumen(id, id_coleccion, isbn, titulo, autor, editorial, numero, dibujante, entintador,
-						colorista, edicion, color, contenido, leido);
+						colorista, edicion, color, contenido,portada, leido);
 				completo.add(c);
 			}
 			rs.close();
@@ -219,13 +206,6 @@ public class VolumenDAO extends Volumen {
 		return completo;
 	}
 
-	/**
-	 * Obtiene una lista ordenada de los comics con la condicion indicada por
-	 * parametro de la BBDD WHERE leido = true || false
-	 *
-	 * @param condicion es un string para la clausula WHERE del select
-	 * @return
-	 */
 	public static List<Volumen> obtenerListaComicsLeidos(String condicion) {
 		List<Volumen> completo = new ArrayList<>();
 		try {
@@ -236,7 +216,7 @@ public class VolumenDAO extends Volumen {
 
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				String id_coleccion = rs.getString("id_coleccion");
+				int id_coleccion = rs.getInt("id_coleccion");
 				String isbn = rs.getString("isbn");
 				String titulo = rs.getString("titulo");
 				String autor = rs.getString("autor");
@@ -248,10 +228,11 @@ public class VolumenDAO extends Volumen {
 				String edicion = rs.getString("edicion");
 				String color = rs.getString("color");
 				String contenido = rs.getString("contenido");
+				String portada = rs.getString("portada");
 				boolean leido = rs.getBoolean("leido");
 
 				Volumen c = new Volumen(id, id_coleccion, isbn, titulo, autor, editorial, numero, dibujante, entintador,
-						colorista, edicion, color, contenido, leido);
+						colorista, edicion, color, contenido,portada, leido);
 				completo.add(c);
 			}
 			rs.close();

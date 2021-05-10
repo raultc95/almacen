@@ -1,7 +1,9 @@
 package ruina.model;
 
 import java.io.Serializable;
-
+/*
+ * @Author : Raul Tenllado 		Ha llegado la hora... lo sabes en lo mas profundo de tu alma... Porque yo soy tu alma 
+ */
 public class Coleccion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected int id;

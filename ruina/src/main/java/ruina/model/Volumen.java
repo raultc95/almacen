@@ -2,12 +2,15 @@ package ruina.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
-
+/*
+ * @Author Raul Tenllado 	Damas. Caballeros, Han comido bien, han devorado la riqueza de Gotham, su espiritu
+ * 							El banquete llega a su fin, desde este momento, nadie esta ha salvo
+ */
 public class Volumen implements Serializable {
 	protected final static String GETBYTITULO = "SELECT titulo,autor,editorial FROM volumen";
 	private static final long serialVersionUID = 1L;
 	protected int id;
-	protected String id_coleccion;
+	protected int id_coleccion;
 	protected String isbn;
 	protected String titulo;
 	protected String autor;
@@ -37,8 +40,8 @@ public class Volumen implements Serializable {
 		this.leido = leido;
 	}
 
-	public Volumen(int id, String id_coleccion, String isbn, String titulo, String autor, String editorial, String numero,
-			String dibujante, String entintador, String colorista, String edicion, String color, String contenido,
+	public Volumen(int id, int id_coleccion, String isbn, String titulo, String autor, String editorial, String numero,
+			String dibujante, String entintador, String colorista, String edicion, String color, String contenido,String portada,
 			boolean leido) {
 		this.id = id;
 		this.id_coleccion = id_coleccion;
@@ -53,6 +56,7 @@ public class Volumen implements Serializable {
 		this.edicion = edicion;
 		this.color = color;
 		this.contenido = contenido;
+		this.portada = portada;
 		this.leido = leido;
 	}
 	
@@ -77,11 +81,11 @@ public class Volumen implements Serializable {
 		this.id = id;
 	}
 
-	public String getId_coleccion() {
+	public int getId_coleccion() {
 		return id_coleccion;
 	}
 
-	public void setId_coleccion(String id_coleccion) {
+	public void setId_coleccion(int id_coleccion) {
 		this.id_coleccion = id_coleccion;
 	}
 
@@ -184,7 +188,7 @@ public class Volumen implements Serializable {
 	@Override
 	public String toString() {
 		return ""
-//				", leido=" + leido + "\n"
+
 				+ "id=" + id + ", id_coleccion=" + id_coleccion + ", isbn=" + isbn + ", titulo=" + titulo
 				+ ", autor=" + autor + ", editorial=" + editorial + ", numero=" + numero + ", dibujante=" + dibujante
 				+ ", entintador=" + entintador + ", colorista=" + colorista + ", edicion=" + edicion + ", color="

@@ -8,19 +8,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import raultc95.ruina.listaColecciones;
 import ruina.model.ColecVol;
 import ruina.model.Coleccion;
 import ruina.model.DataConnection;
 import ruina.model.Volumen;
 import ruina.service.ConectionUtil;
+/*
+ * @Author Raul Tenllado
+ */
 
 public class ColeccionDAO extends Coleccion {
 	private static DataConnection dc = new DataConnection("localhost", "almacen", "root", "");
 	private static final long serialVersionUID = 1L;
 	private final static String GETCOL = "SELECT coleccion.serie, volumen.titulo ,volumen.numero, volumen.isbn "
 			+ " FROM coleccion, volumen " + " WHERE coleccion.id=volumen.id_coleccion ORDER BY coleccion.serie";
-	private final static String INSERTCOL = "INSERT INTO coleccion (serie) VALUES (?) ON DUPLICATE KEY UPDATE serie=?";
-
+	private final static String INSERTCOL = "INSERT INTO coleccion (serie) VALUES (?)";
+	private final static String LISTCOL = "SELECT * FROM coleccion"; 
+			
 	private static String titulov;
 	private static String isbn;
 	private static String numero;
@@ -55,9 +60,7 @@ public class ColeccionDAO extends Coleccion {
 	}
 
 	public int guardar() {
-		// INSERT o UPDATE
-		// INSERT -> si no existe OK
-		// En caso de ERROR -> hago un update
+
 		int rs = 0;
 		Connection con = null;
 		try {
@@ -71,7 +74,7 @@ public class ColeccionDAO extends Coleccion {
 			try {
 				PreparedStatement q = con.prepareStatement(INSERTCOL);
 				q.setString(1, this.serie);
-				q.setString(2, this.serie);
+				
 
 				rs = q.executeUpdate();
 			} catch (SQLException e) {
@@ -101,6 +104,30 @@ public class ColeccionDAO extends Coleccion {
 
 				listado.add(c);
 
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			listado = new ArrayList<>();
+		}
+		return listado;
+	}
+	public static List<Coleccion> obtenerLista() {
+		List<Coleccion> listado = new ArrayList<>();
+		try {
+			Connection miConexion = ConectionUtil.connect(dc);
+			Statement st = miConexion.createStatement();
+
+			ResultSet rs = st.executeQuery(LISTCOL);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String serie = rs.getString("serie");
+				
+				Coleccion listColeccion = new Coleccion(id,serie);
+
+				listado.add(listColeccion);
 			}
 			rs.close();
 			st.close();

@@ -29,6 +29,9 @@ import ruina.model.DataConnection;
 import ruina.model.Volumen;
 import ruina.dao.VolumenDAO;
 import ruina.service.Utilidades;
+/*
+ * @Author Raul Tenllado 
+ */
 
 public class PrimaryController {
 	@FXML
@@ -68,9 +71,7 @@ public class PrimaryController {
 	protected void initialize() {
 		alerta.setContentText("Bienvenido a LIBRONJAMES");
 		alerta.showAndWait();
-		System.out.println("Bienvenido a LIBRONJAMES");
-		System.out.println("Cargando.........");
-
+		
 		configuraTabla();
 
 		tablaComic.setRowFactory(tv -> {
@@ -90,8 +91,7 @@ public class PrimaryController {
 						e.printStackTrace();
 					}
 					
-					
-					
+	
 					Stage stage = new Stage();
 					stage.initModality(Modality.APPLICATION_MODAL);
 					stage.setOpacity(1);
@@ -136,7 +136,6 @@ public class PrimaryController {
 			checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 				public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
 					cadalibro.getValue().setLeido(new_val);
-					System.out.println(cadalibro.getValue().getId() + " " + cadalibro.getValue().Leido());
 					VolumenDAO.leido(cadalibro.getValue().Leido(), cadalibro.getValue().getId());
 					if (tablaCompleta) {
 						listaCompleta();
@@ -152,7 +151,6 @@ public class PrimaryController {
 
 	@FXML
 	private void pulsado() {
-		System.out.println("Cargando Añadir.........");
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("secondary.fxml"));
 		Parent root = null;
 		try {
@@ -177,7 +175,6 @@ public class PrimaryController {
 
 	@FXML
 	protected  void listaCompleta() {
-		System.out.println("Pulsando Lista Completa");
 		List<Volumen> completo = new ArrayList<>();
 		completo = VolumenDAO.obtenerListaComics();
 		tablaComic.setItems(FXCollections.observableArrayList(completo));
@@ -186,7 +183,6 @@ public class PrimaryController {
 
 	@FXML
 	protected  void listaPendientes() {
-		System.out.println("Pulsando Lista Pendientes");
 		List<Volumen> completo = new ArrayList<>();
 		completo = VolumenDAO.obtenerListaComicsLeidos("leido=false");
 		tablaComic.setItems(FXCollections.observableArrayList(completo));
@@ -195,7 +191,6 @@ public class PrimaryController {
 
 	@FXML
 	private void donacion() {
-		System.out.println("Cargando donacion.........");
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("donation.fxml"));
 		Parent root = null;
 		try {
@@ -215,7 +210,6 @@ public class PrimaryController {
 
 	@FXML
 	private void informacion() {
-		System.out.println("Cargando Información.........");
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sobre.fxml"));
 		Parent root = null;
 		try {
@@ -235,7 +229,6 @@ public class PrimaryController {
 
 	@FXML
 	private void addColeccion() {
-		System.out.println("Cargando Añadir Autores.........");
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("coleccion.fxml"));
 		Parent root = null;
 		try {
@@ -263,11 +256,7 @@ public class PrimaryController {
 	@FXML
 	private void editar() {
 		Volumen comic = tablaComic.getSelectionModel().getSelectedItem();
-		
 		information.setId(comic.getId());
-//		List<Volumen>lista=VolumenDAO.obtenerListaComicsLeidos("id="+comic.getId());
-//		comic=lista.get(0);
-//		System.out.println(comic);
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("information.fxml"));
 		Parent root = null;
 
@@ -312,8 +301,5 @@ public class PrimaryController {
 		stage.setResizable(false);
 		stage.showAndWait();
 	}
-		
-	
-
 
 }
