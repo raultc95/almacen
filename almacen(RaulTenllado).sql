@@ -60,28 +60,7 @@ INSERT INTO `coleccion` (`id`, `serie`) VALUES
 (20, 'Bloodborne'),
 (21, 'Dark Souls'),
 (22, 'Los Muertos Vivientes'),
-(23, 'Violence Action'),
-(24, 'Gigant'),
-(25, 'My Hero Academia'),
-(26, 'Gantz'),
-(28, 'League of Legends'),
-(29, 'Autoconclusivo'),
-(30, 'Monster'),
-(31, 'Prison School'),
-(32, 'Made in Abyss'),
-(33, 'DC Pocket'),
-(34, 'Ghost in the Shell'),
-(35, 'Ibitsu'),
-(36, 'Inuyashiki'),
-(37, 'Tomie'),
-(38, 'Voces en la oscuridad'),
-(39, 'Relatos Terrorificos'),
-(40, 'Promociones'),
-(41, 'Apocalipsis en el Instituto'),
-(42, 'Montage'),
-(43, 'Sidooh'),
-(44, 'Antalogia'),
-(45, 'Your Name');
+
 
 -- --------------------------------------------------------
 
