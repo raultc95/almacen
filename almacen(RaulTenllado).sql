@@ -59,7 +59,7 @@ INSERT INTO `coleccion` (`id`, `serie`) VALUES
 (19, 'The Witcher'),
 (20, 'Bloodborne'),
 (21, 'Dark Souls'),
-(22, 'Los Muertos Vivientes'),
+(22, 'Los Muertos Vivientes');
 
 
 -- --------------------------------------------------------
