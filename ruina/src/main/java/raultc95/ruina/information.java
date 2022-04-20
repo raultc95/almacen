@@ -1,14 +1,11 @@
 package raultc95.ruina;
 
-import java.io.ByteArrayInputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import java.util.List;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -17,7 +14,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -115,6 +111,12 @@ public class information {
 
 		v.actualizar(comic);
 
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("ACTUALIZAR");
+		alert.setHeaderText("ACTUALIZACION");
+		alert.setContentText("COMIC ACTUALIZADO CORRECTAMENTE");
+
+		alert.showAndWait();
 	}
 
 	@FXML
@@ -144,9 +146,15 @@ public class information {
 
 	@FXML
 	protected void borrar() {
-		v.eliminar(id);
-		Stage stage = (Stage) eliminar.getScene().getWindow();
-		stage.close();
+		Alert alert = new Alert(AlertType.CONFIRMATION, "VA A ELIMINAR UN COMIC DEL ALMACEN ¿ESTA SEGURO?");
+
+		alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent((ButtonType response) -> {
+			v.eliminar(id);
+			Stage stage = (Stage) eliminar.getScene().getWindow();
+			stage.close();
+		});
+
+
 
 	}
 

@@ -105,11 +105,9 @@ public class SecondaryController  {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("AÑADIR");
 		alert.setHeaderText("AÑADIDO");
-		alert.setContentText("LIBRO/COMIC AÑADIDO CORRECTAMENTE");
-
+		alert.setContentText("COMIC AÑADIDO CORRECTAMENTE");
 		alert.showAndWait();
-		System.out.println("SELLO AÑADIDO");
-		System.out.println("Se ha añadido correctamente");
+
 	}
 	@FXML
 	public void actionPerformed(ActionEvent e){
@@ -138,11 +136,10 @@ public class SecondaryController  {
 	    }
        
     }
-	
+	//Esto al quitarse hace que falle, la solucion es que se quite del FXML, ya lo hara el Raul del Futuro
 	@FXML
 	public void seleccion() {
-		 
-		listaColeccion.getItems().add("Hola");
+
 	}
 
 }
